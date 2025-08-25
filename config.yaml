@@ -1,0 +1,59 @@
+# Docsify Helper 配置文件
+
+# 文档目录配置
+docs_dir: "./docs"
+
+# 输出目录配置
+output_dir: "./docs"
+
+# 侧边栏配置
+sidebar:
+  # 排除的文件和目录
+  exclude:
+    - "_sidebar.md"
+    - "README.md"
+    - ".DS_Store"
+    - "Thumbs.db"
+    - ".git"
+    - "node_modules"
+    - ".obsidian"
+    - ".vscode"
+  
+  # 是否显示文件夹
+  show_folders: true
+  
+  # 是否递归扫描子目录
+  recursive: true
+  
+  # 文件排序方式: name, date, size
+  sort_by: "name"
+
+# 部署配置
+deployment:
+  # 部署方式: git, cloudflare
+  type: "cloudflare"
+  
+  # Git 配置
+  git:
+    # Git 可执行文件路径（可选，留空则使用系统 PATH 中的 git）
+    executable_path: ""
+    
+    # 远程仓库 URL（可选）
+    remote_url: ""
+    
+    # 分支名称
+    branch: "main"
+    
+    # 提交信息模板
+    commit_message: "docs: 更新文档 {{.Date}}"
+  
+  # Cloudflare 配置
+  cloudflare:
+    # Wrangler CLI 路径（可选，留空则使用系统 PATH 中的 wrangler）
+    wrangler_path: ""
+    
+    # 项目名称
+    project_name: ""
+    
+    # 账户 ID
+    account_id: ""

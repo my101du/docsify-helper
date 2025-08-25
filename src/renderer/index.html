@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docsify Helper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- 标题栏 -->
+        <header class="header">
+            <h1>📚 Docsify Helper</h1>
+            <p>Docsify 文档自动化工具</p>
+        </header>
+
+        <!-- 配置区域 -->
+        <section class="config-section">
+            <h2>📋 配置</h2>
+            <div class="form-group">
+                <label for="docsDir">文档保存目录:</label>
+                <div class="input-group">
+                    <input type="text" id="docsDir" placeholder="选择文档保存目录..." readonly>
+                    <button id="browseDocs" class="btn btn-secondary">浏览</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="outputDir"> Sidebar 文件输出目录:</label>
+                <div class="input-group">
+                    <input type="text" id="outputDir" placeholder="选择输出目录..." readonly>
+                    <button id="browseOutput" class="btn btn-secondary">浏览</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="deploymentType">部署方式:</label>
+                <select id="deploymentType">
+                    <option value="git">Git</option>
+                    <option value="cloudflare">Cloudflare Pages</option>
+                </select>
+            </div>
+
+            <!-- Cloudflare 项目名称输入框 -->
+            <div class="form-group hidden" id="cloudflareProjectGroup">
+                <label for="cloudflareProject">Cloudflare 项目名称:</label>
+                <input type="text" id="cloudflareProject" placeholder="输入 Cloudflare Pages 项目名称..." required>
+                <small class="form-text">这是部署到 Cloudflare Pages 的必填项</small>
+            </div>
+
+            <!-- 排除文件和目录 -->
+            <div class="form-group">
+                <label for="excludePatterns"> Sidebar 排除文件和目录:</label>
+                <textarea id="excludePatterns" placeholder="每行一个模式，支持通配符&#10;例如：&#10;.obsidian&#10;*.tmp&#10;node_modules" rows="4"></textarea>
+                <small class="form-text">每行一个模式，支持通配符 (*, ?, [])，用于排除不需要的文件和目录</small>
+            </div>
+
+            <!-- 配置操作按钮 -->
+            <div class="form-group">
+                <div class="button-group">
+                    <button id="saveConfigBtn" class="btn btn-info">
+                        <span class="icon">💾</span>
+                        保存配置文件
+                    </button>
+                    <button id="resetConfigBtn" class="btn btn-outline">
+                        <span class="icon">🔄</span>
+                        重新选择目录
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 操作区域 -->
+        <section class="actions-section">
+            <h2>🚀 操作</h2>
+            <div class="button-grid">
+                <button id="generateBtn" class="btn btn-primary">
+                    <span class="icon">📋</span>
+                    生成 _sidebar.md
+                </button>
+                <button id="checkEnvBtn" class="btn btn-secondary">
+                    <span class="icon">🔍</span>
+                    检查部署环境
+                </button>
+                <button id="deployBtn" class="btn btn-success">
+                    <span class="icon">🚀</span>
+                    部署
+                </button>
+            </div>
+        </section>
+
+        <!-- 状态和日志区域 -->
+        <section class="status-section">
+            <h2>📊 状态</h2>
+            <div class="status-info">
+                <span class="status-label">当前状态:</span>
+                <span id="statusText" class="status-text">就绪</span>
+            </div>
+            
+            <h3>📝 日志</h3>
+            <div class="log-container">
+                <pre id="logOutput">欢迎使用 Docsify Helper! 🎉
+
+请先配置文档目录和输出目录，然后开始使用。
+</pre>
+            </div>
+            <button id="clearLogBtn" class="btn btn-sm btn-outline">清空日志</button>
+        </section>
+    </div>
+
+    <!-- 模态框 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">提示</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="modalOk" class="btn btn-primary">确定</button>
+                <button id="modalCancel" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
