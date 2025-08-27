@@ -49,6 +49,12 @@
     },
     "portable": {
       "artifactName": "${productName}-${version}-portable.${ext}"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"]
+    },
+    "mac": {
+      "target": "dmg"
     }
   },
   "bin": {
